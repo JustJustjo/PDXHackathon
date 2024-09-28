@@ -14,13 +14,13 @@ object MainWindow: VBox() {
     init {
         stateChooser.items.addAll(Constants.allStateList)
         stateChooser.selectionModel.selectFirst()
-        stateChooser.setOnMouseClicked {
+        stateChooser.setOnAction {
             updateGraph()
         }
 
-        yearPicker.items.addAll(2023..2050)
+        yearPicker.items.addAll(2005..2023)
         yearPicker.selectionModel.selectFirst()
-        yearPicker.setOnMouseClicked {
+        yearPicker.setOnAction {
             updateGraph()
         }
 
@@ -34,18 +34,20 @@ object MainWindow: VBox() {
     }
 
     fun updateGraph() {
+        GraphView.clearData()
         val state = stateChooser.selectionModel.selectedItem
         val year = yearPicker.value
         println("updating graph from $year $state")
 
         println(Data.stateData)
 
-        Data.stateData[year]?.forEach {
-            if (it.value == state) {
-                GraphView.addData(year, it.population)
+        for (i in 2000..2023) {
+            Data.stateData[i]?.forEach {
+                if (it.value == state) {
+                    GraphView.addData(i, it.population)
+                }
             }
         }
-
     }
 }
 
