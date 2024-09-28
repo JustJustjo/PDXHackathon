@@ -20,6 +20,7 @@ object RequestGetter {
             }
             val stateData = getRequest("https://api.census.gov/data/$i/acs/acs1/profile?get=NAME,DP02_0124E&for=state:*")
 
+            println(stateData)
             stateData.forEach {
                 allStates.add(State(it.first, it.second))
             }
@@ -56,11 +57,11 @@ object RequestGetter {
         val stateResultList = gson.fromJson(response.toString(), List::class.java)
         val finalResultList: ArrayList<Triple<String, Int, Int>> = arrayListOf()
         for (stateResult in stateResultList) {
-            println(stateResult)
+//            println(stateResult)
 
-            val resultString = stateResultList.toString()
+            val resultString = stateResult.toString()
 
-            val rejectList = listOf("District of Columbia", "New Hampshire", "New Jersey", "New Mexico", "New Jersey", "New Mexico", "New York", "North Carolina", "North Carolina", "North Dakota", "Rhode Island")
+            val rejectList = listOf("District of Columbia", "New Hampshire", "New Jersey", "New Mexico", "New Jersey", "New Mexico", "New York", "North Carolina", "North Carolina", "North Dakota", "Rhode Island", "Puerto Rico", "South Carolina", "South Dakota", "West Virginia")
 
             var valid = true
 
@@ -70,13 +71,16 @@ object RequestGetter {
                 }
             }
 
+            println(stateResult)
             if (valid) {
                 val result = gson.fromJson(stateResult.toString(), List::class.java)
                 println(result)
                 finalResultList.add(
                     Triple(
                         result[0] as String,
-                        (result[1] as Double).toInt(), 0))
+                        (result[1] as Double).toInt(),
+                        0))
+
             }
 
 

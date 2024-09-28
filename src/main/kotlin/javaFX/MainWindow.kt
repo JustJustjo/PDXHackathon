@@ -36,6 +36,9 @@ object MainWindow: VBox() {
     fun updateGraph() {
         val state = stateChooser.selectionModel.selectedItem
         val year = yearPicker.value
+        println("updating graph from $year $state")
+
+        println(Data.stateData)
 
         Data.stateData[year]?.forEach {
             if (it.value == state) {
