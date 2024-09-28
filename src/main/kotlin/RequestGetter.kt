@@ -43,7 +43,7 @@ object RequestGetter {
             response.append('\n');
             line = reader   .readLine()
         }
-        println(response.toString())
+//        println(response.toString())
 
         val gson = Gson()
 
