@@ -17,6 +17,7 @@ javafx {
 
 dependencies {
     implementation("com.google.code.gson:gson:2.11.0")
+    implementation("org.apache.commons:commons-math3:3.6.1")
 }
 
 tasks.test {
