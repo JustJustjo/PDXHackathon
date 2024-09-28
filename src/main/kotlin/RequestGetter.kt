@@ -57,8 +57,30 @@ object RequestGetter {
         val stateResultList = gson.fromJson(response.toString(), List::class.java)
         val finalResultList: ArrayList<Triple<String, Int, Int>> = arrayListOf()
         for (stateResult in stateResultList) {
-            val result = gson.fromJson(stateResult.toString(), List::class.java)
-            finalResultList.add(Triple(result[0] as String, result[1] as Int, result[2] as Int))
+            println(stateResult)
+
+            val resultString = stateResultList.toString()
+
+            val rejectList = listOf("District of Columbia", "New Hampshire", "New Jersey", "New Mexico", "New Jersey", "New Mexico", "New York", "North Carolina", "North Carolina", "North Dakota", "Rhode Island")
+
+            var valid = true
+
+            rejectList.forEach {
+                if (resultString.contains(it)) {
+                    valid = false
+                }
+            }
+
+            if (valid) {
+                val result = gson.fromJson(stateResult.toString(), List::class.java)
+                println(result)
+                finalResultList.add(
+                    Triple(
+                        result[0] as String,
+                        (result[1] as Double).toInt(), 0))
+            }
+
+
         }
 
         return finalResultList
