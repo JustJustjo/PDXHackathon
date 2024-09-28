@@ -17,13 +17,23 @@ object MainWindow: VBox() {
         yearPicker.items.addAll(2023..2050)
         yearPicker.selectionModel.selectFirst()
 
+        GraphView.addData(2000, 1)
+        GraphView.addData(2001, 2)
+        GraphView.addData(2002, 3)
+        GraphView.addData(2003, 4)
+        GraphView.addData(2004, 5)
+        GraphView.addData(2005, 6)
+        GraphView.addData(2006, 7)
+        GraphView.addData(2007, 8)
+        GraphView.addData(2008, 9)
+
 //        monthChooser.items.addAll(Constants.allMonths)
 //        monthChooser.selectionModel.selectFirst()
 
 //        yearPicker.setMaxSize(50.0, Double.MAX_VALUE)
 
         this.alignment = Pos.CENTER
-        this.children.addAll(Label("State", stateChooser), Label("Year", yearPicker))
+        this.children.addAll(Label("State", stateChooser), Label("Year", yearPicker), GraphView)
     }
 }
 

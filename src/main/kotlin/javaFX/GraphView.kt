@@ -16,7 +16,12 @@ object GraphView: VBox() {
         xAxis.label = "Year"
         yAxis.label = "Population"
 
+        xAxis.isAutoRanging = false
+        xAxis.lowerBound = 2000.0
+        xAxis.upperBound = 2050.0
+
         lineChart.data.add(series)
+        children.add(lineChart)
     }
 
     fun addData(year: Int, population: Int) {
