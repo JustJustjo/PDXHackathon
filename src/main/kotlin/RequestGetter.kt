@@ -7,7 +7,24 @@ import java.net.URL
 
 
 object RequestGetter {
-    // Takes a url (string) and returns a string containing the data at the given URL
+    val stateData: ArrayList<Any> = arrayListOf()
+
+    val startYear = 2005
+
+    fun calculate() {
+        for (i in startYear..2023) {
+            if (i == 2020) {
+                continue
+            }
+            getRequest("https://api.census.gov/data/$i/acs/acs1/profile?get=NAME,DP02_0124E&for=state:*")?.let {
+                stateData.add(
+                    it
+                )
+            }
+        }
+    }
+
+    // Takes a URL (string) and returns a nested list containing the data at the given URL
     fun getRequest(urlString: String): List<*>? {
         val url = URL(urlString)
         val connection = url.openConnection()
@@ -24,8 +41,7 @@ object RequestGetter {
         while (line != null) {
             response.append(line);
             response.append('\n');
-//            println(line)
-            line = reader.readLine()
+            line = reader   .readLine()
         }
         println(response.toString())
 
@@ -33,4 +49,5 @@ object RequestGetter {
 
         return gson.fromJson(response.toString(), List::class.java)
     }
+
 }
