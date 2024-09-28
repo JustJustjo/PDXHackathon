@@ -1,8 +1,10 @@
 package org.example.javaFX
 
+import com.sun.tools.javac.Main
 import javafx.application.Application
 import javafx.geometry.Rectangle2D
 import javafx.scene.Scene
+import javafx.scene.control.Button
 import javafx.scene.layout.VBox
 import javafx.stage.Screen
 import javafx.stage.Stage
@@ -19,13 +21,12 @@ class KApplication : Application() {
     }
 
     override fun start(stage: Stage) {
-
         val screen = Screen.getPrimary()
 
         Companion.stage = stage
 
         val bounds = Rectangle2D(screen.visualBounds.minX, screen.visualBounds.minY, screen.visualBounds.width, screen.visualBounds.height)
-        stage.scene = Scene(VBox(), bounds.width, bounds.height)
+        stage.scene = Scene(MainWindow, bounds.width, bounds.height)
         stage.sizeToScene()
         stage.show()
     }
