@@ -11,24 +11,25 @@ object RequestGetter {
     val startYear = 2005
 
     fun calculate() {
-        val result = mutableMapOf<Int, List<State>>()
+        val result = mutableMapOf<Int, List<YearSubData>>()
         for (i in startYear..2023) {
-            val allStates: MutableList<State> = mutableListOf()
+            val allStates: MutableList<YearSubData> = mutableListOf()
 
             if (i == 2020) {
                 continue
             }
-            val stateData = getRequest("https://api.census.gov/data/$i/acs/acs1/profile?get=NAME,DP02_0124E&for=state:*")
+            val code = if (i < 2006 ) "DP01_0001E" else if (i < 2008) "DP02_0085E" else if (i < 2020) "DP02_0086E" else "DP02_0088E"
+            val stateData = getRequest("https://api.census.gov/data/$i/acs/acs1/profile?get=NAME,${code}&for=state:*")
 
             println(stateData)
             stateData.forEach {
-                allStates.add(State(it.first, it.second))
+                allStates.add(YearSubData(it.first, it.second))
             }
 
             result[i] = allStates
         }
 
-        Data.stateData = result
+        YearData.yearData = result
     }
 
     // Takes a URL (string) and returns a nested list containing the data at the given URL

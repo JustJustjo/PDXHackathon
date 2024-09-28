@@ -4,7 +4,7 @@ import javafx.geometry.Pos
 import javafx.scene.control.ComboBox
 import javafx.scene.control.Label
 import javafx.scene.layout.VBox
-import org.example.Data
+import org.example.YearData
 
 object MainWindow: VBox() {
     val stateChooser = ComboBox<String>()
@@ -39,14 +39,29 @@ object MainWindow: VBox() {
         val year = yearPicker.value
         println("updating graph from $year $state")
 
-        println(Data.stateData)
+        println(YearData.yearData)
 
+        var added = 0
         for (i in 2000..2023) {
-            Data.stateData[i]?.forEach {
-                if (it.value == state) {
-                    GraphView.addData(i, it.population)
+            if (i != 2019) {
+                YearData.yearData[i]?.forEach {
+                    if (it.state == state) {
+                        var population = it.population
+
+                        if (i < 2020) {
+//                            population += added
+                        }
+                        println("year: $i $population $added")
+
+
+                        if (it.state == state) {
+                            GraphView.addData(i, population)
+                        }
+                        added += it.population
+                    }
                 }
             }
+
         }
     }
 }
