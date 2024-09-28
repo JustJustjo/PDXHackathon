@@ -1,7 +1,7 @@
 package org.example
 
 object Data {
-    val stateData = mutableMapOf<String, List<Population>>()
+    var stateData = mutableMapOf<Int, List<State>>()
 }
 
-data class Population(val value: Int, val year: Int)
+data class State(val value: String, val population: Int)
