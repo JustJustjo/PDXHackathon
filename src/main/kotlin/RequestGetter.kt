@@ -6,7 +6,6 @@ import java.io.InputStreamReader
 import java.net.URL
 import java.time.Year
 
-
 object RequestGetter {
 
     val startYear = 2005
