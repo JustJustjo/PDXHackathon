@@ -2,11 +2,7 @@ package org.example.javaFX
 
 object Constants {
 
-
-
-
-
-
+    val allMonths = listOf("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
     val allStateList = listOf("Alabama",
             "Alaska",
             "Arizona",

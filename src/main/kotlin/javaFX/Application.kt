@@ -1,11 +1,8 @@
 package org.example.javaFX
 
-import com.sun.tools.javac.Main
 import javafx.application.Application
 import javafx.geometry.Rectangle2D
 import javafx.scene.Scene
-import javafx.scene.control.Button
-import javafx.scene.layout.VBox
 import javafx.stage.Screen
 import javafx.stage.Stage
 
@@ -15,7 +12,6 @@ class KApplication : Application() {
 
         @JvmStatic
         fun main() {
-            println("Launching NodeDeck...")
             launch(KApplication::class.java)
         }
     }
